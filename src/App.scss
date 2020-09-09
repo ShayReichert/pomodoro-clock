@@ -64,7 +64,7 @@ body, #root, .App {
 }
 
 
-// POMODORO HEAD
+// POMODORO BREAK SESSION LABELS
 .session-element {
   display: flex;
   flex-direction: column;
@@ -83,11 +83,17 @@ body, #root, .App {
   font-size: 37px;
 }
 #break-decrement, #break-increment, #session-decrement, #session-increment {
+  cursor: pointer;
   font-size: 27px;
   color: $second-color;
 }
 #session-length, #break-length {
-  margin: 0 20px;
+  min-width: 54px;
+  text-align: center;
+  margin: 0 15px;
+}
+.disabled {
+  cursor: not-allowed !important;
 }
 
 
@@ -98,8 +104,10 @@ body, #root, .App {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
   #time-left {
-    text-align: center;
+    margin: 0 auto;
+    min-width: 210px;
     font-size: 64px;
   }
   #timer-label {

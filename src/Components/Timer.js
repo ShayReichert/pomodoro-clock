@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
 
+
+const timeFormatOk = (timerLeftInSecond) => {
+    let minute = Math.floor(timerLeftInSecond / 60);
+    if (minute < 10) minute = '0' + minute;
+  
+    let second = timerLeftInSecond - 60 * minute;
+    if (second < 10) second = '0' + second;
+  
+    return `${minute}:${second}`;
+  }
+
+
 class Timer extends Component {
     render() {
-        const { timeLeft, timerLabel } = this.props
+        const { timerLabel } = this.props
         return (
             <div className="timer">
-                <div id="time-left">{timeLeft}</div>
+                <span id="time-left">{timeFormatOk(this.props.timerLeftInSecond)}</span>
                 <div id="timer-label">de <span>{timerLabel}</span></div>
             </div>
         )
