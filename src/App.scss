@@ -81,7 +81,18 @@ body, #root, .App {
   justify-content: center;
   width: 112px;
   font-size: 37px;
+  button {
+    background: #000000;
+    border: none;
+    outline: none;
+    &:hover {
+      border: none;
+      outline: none;
+      color: #fff;
+    }
+  }
 }
+
 #break-decrement, #break-increment, #session-decrement, #session-increment {
   cursor: pointer;
   font-size: 27px;

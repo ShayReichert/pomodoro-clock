@@ -17,18 +17,45 @@ class BreakSessionLabels extends Component {
                 <div className="session-element">
                     <h5>break</h5>
                     <div id="break-label"><br />
-                        <div id="break-decrement" onClick={handleDecrementBreak} className={isStart ? 'disabled' : ''}>-</div>
+
+                        <button
+                            id="break-decrement"
+                            onClick={handleDecrementBreak}
+                            className={isStart ? 'disabled' : ''}>
+                            -
+                        </button>
+
                         <div id="break-length">{breakLength}</div>
-                        <div id="break-increment" onClick={handleIncrementBreak} className={isStart ? 'disabled' : ''}>+</div>
+
+                        <button
+                            id="break-increment"
+                            onClick={handleIncrementBreak}
+                            className={isStart ? 'disabled' : ''}>
+                            +
+                        </button>
+
                     </div>
                 </div>
 
                 <div className="session-element">
                     <h5>session</h5>
                     <div id="session-label">
-                        <div id="session-decrement" onClick={handleDecrementSession} className={isStart ? 'disabled' : ''}>-</div>
+
+                        <button
+                            id="session-decrement"
+                            onClick={handleDecrementSession}
+                            className={isStart ? 'disabled' : ''}>
+                            -
+                        </button>
+
                         <div id="session-length">{sessionLength}</div>
-                        <div id="session-increment" onClick={handleIncrementSession} className={isStart ? 'disabled' : ''}>+</div>
+
+                        <button
+                            id="session-increment"
+                            onClick={handleIncrementSession}
+                            className={isStart ? 'disabled' : ''}>
+                            +
+                        </button>
                     </div>
                 </div>
             </Fragment>
