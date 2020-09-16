@@ -6,16 +6,17 @@ import Controls from './Components/Controls'
 
 class App extends Component {
 
-   state = {
-      sessionLength: Number.parseInt(25, 10),
-      breakLength: Number.parseInt(5, 10),
-      timerLabel: 'Session',
-      timerLeftInSecond: Number.parseInt(25, 10) * 60,
+  state = {
+    sessionLength: Number.parseInt(25, 10),
+    breakLength: Number.parseInt(5, 10),
+    timerLabel: 'Session',
+    classNameBodyTimer: 'body-timer',
+    timerLeftInSecond: Number.parseInt(25, 10) * 60,
 
-      isStart: false,
-      timerInterval: null
-    }
-  
+    isStart: false,
+    timerInterval: null
+  }
+
   handleIncrementBreak = () => {
     if (this.state.breakLength < 60 && !this.state.isStart) {
       this.setState({
@@ -49,24 +50,21 @@ class App extends Component {
   }
 
   onReset = () => {
-    const beepSound = document.getElementById('beep')
     this.setState({
       sessionLength: Number.parseInt(25, 10),
       breakLength: Number.parseInt(5, 10),
       timerLabel: 'Session',
+      classNameBodyTimer: 'body-timer',
       timerLeftInSecond: Number.parseInt(25, 10) * 60,
       isStart: false,
       timerInterval: null
     });
-    beepSound.pause()
-    beepSound.currentTime = 0
+    this.stopSound()
     this.state.timerInterval && clearInterval(this.state.timerInterval)
 
   }
 
   startStop = () => {
-    const beepSound = document.getElementById('beep')
-
     if (!this.state.isStart) {
       this.setState({
         isStart: !this.state.isStart,
@@ -76,8 +74,7 @@ class App extends Component {
         }, 1000)
       })
     } else {
-      beepSound.pause()
-      beepSound.currentTime = 0
+      this.stopSound()
       this.state.timerInterval && clearInterval(this.state.timerInterval)
 
       this.setState({
@@ -93,6 +90,12 @@ class App extends Component {
     })
   }
 
+  stopSound = () => {
+    const beepSound = document.getElementById('beep')
+    beepSound.pause()
+    beepSound.currentTime = 0
+  }
+
   phaseControl = () => {
     const beepSound = document.getElementById('beep')
     if (this.state.timerLeftInSecond === 0) {
@@ -103,11 +106,13 @@ class App extends Component {
       if (this.state.timerLabel === 'Session') {
         this.setState({
           timerLabel: 'Break',
+          classNameBodyTimer: 'body-timer body-timer_break',
           timerLeftInSecond: this.state.breakLength * 60
         });
       } else {
         this.setState({
           timerLabel: 'Session',
+          classNameBodyTimer: 'body-timer',
           timerLeftInSecond: this.state.sessionLength * 60
         });
       }
@@ -141,7 +146,7 @@ class App extends Component {
 
           </div>
 
-          <div className="body-timer">
+          <div className={this.state.classNameBodyTimer}>
             <Timer
               timerLeftInSecond={timerLeftInSecond}
               timerLabel={timerLabel}
